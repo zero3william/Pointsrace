@@ -1,0 +1,29 @@
+#chart {
+  background: #fffabc;
+  width: 600px;
+  height: 800px;
+}
+
+#chart .bar {
+  fill: steelblue;
+}
+
+.round-wrapper {
+  display: flow-root;
+}
+
+.round-wrapper .round {
+  font-size: 1.2em;
+}
+
+.record-table {
+  float: left;
+  width: 33%;
+  padding: 4px 10px;
+  text-align: center;
+}
+.record-table .name {
+}
+.record-table .score {
+  width: 50px;
+}
