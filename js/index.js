@@ -72,8 +72,25 @@ window.onload = function() {
     .attr('transform', 'translate(0,' + height + ')')
     .call(d3.axisBottom(x));
 
-  // add the y Axis
+  // // add the y Axis
   svg.append('g').call(d3.axisLeft(y));
+
+  // // add the name
+  svg
+    .selectAll('.text')
+    .data(data)
+    .enter()
+    .append('text')
+    .attr('class', 'text')
+    .attr('x', function(d) {
+      return x(d.point);
+    })
+    .attr('y', function(d) {
+      return y(d.name) + 18;
+    })
+    .text(function(d) {
+      return d.name;
+    });
 };
 
 function getRandomInt(min, max) {
