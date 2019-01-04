@@ -7,6 +7,9 @@
 #chart .bar {
   fill: steelblue;
 }
+#chart .text {
+  fill: #fff;
+}
 
 .round-wrapper {
   display: flow-root;

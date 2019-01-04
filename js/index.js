@@ -5,13 +5,15 @@ window.onload = function() {
   for (let i = 0; i < 24; i++) {
     let str = `player${i + 1}`;
     let point = getRandomInt(4, 24);
-    players.push({ name: str, point: point });
+    players.push({ name: str, point: point, index: i });
   }
 
-  var data = players;
+  var data = players.sort(function(a, b) {
+    return a.point - b.point;
+  });
 
   // set the dimensions and margins of the graph
-  var margin = { top: 20, right: 20, bottom: 30, left: 60 },
+  var margin = { top: 20, right: 20, bottom: 30, left: 30 },
     width = 600 - margin.left - margin.right,
     height = 800 - margin.top - margin.bottom;
 
@@ -45,9 +47,10 @@ window.onload = function() {
       return d.point;
     })
   ]);
+
   y.domain(
-    data.map(function(d) {
-      return d.name;
+    data.map(function(d, index) {
+      return 24 - index;
     })
   );
 
@@ -61,8 +64,8 @@ window.onload = function() {
     .attr('width', function(d) {
       return x(d.point);
     })
-    .attr('y', function(d) {
-      return y(d.name);
+    .attr('y', function(d, index) {
+      return y(24 - index);
     })
     .attr('height', y.bandwidth());
 
@@ -83,10 +86,10 @@ window.onload = function() {
     .append('text')
     .attr('class', 'text')
     .attr('x', function(d) {
-      return x(d.point);
+      return x(d.point) - 70;
     })
-    .attr('y', function(d) {
-      return y(d.name) + 18;
+    .attr('y', function(d, index) {
+      return y(24 - index) + 18;
     })
     .text(function(d) {
       return d.name;
